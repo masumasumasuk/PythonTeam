@@ -44,4 +44,6 @@ public class Reservation_system {
 		return this.Num = this.Top_Num + this.Bottom_Num;
 	}
 	
+	
+	
 }

@@ -1,30 +1,33 @@
 package Proj;
 
 public class Save {
-	public static String[][] saves;
+	public static String[][][] saves;
 	
 	public Save() {
 		
 	}
 	
-	public Save(int i, int j) {
-		saves = new String[i][j];
+	public Save(int k, int i, int j) {
+		saves = new String[k][i][j];
 	}
 	
-	public void add_save(int i, String[] save) {
-		saves[i] = save;
+	public void add_save(int k, int i, String[] save) {
+		saves[k][i] = save;
 	}
 	
-	public String[] get_save(int i) {
-		return saves[i];
+	public String[] get_save(int k, int i) {
+		return saves[k][i];
 	}
 	
 	public static void initialize() {
-        for (int i = 0; i < saves.length; i++) {
-                saves[i][0] = "0";
-                saves[i][1] = "빈자리";
-                saves[i][2] = "공란";
-                saves[i][3] = "공란";
-        }
-    }
+		for (int k = 0; k < saves.length; k++) {
+			for (int i = 0; i < saves[k].length; i++) {
+				saves[k][i][0] = "0";
+				saves[k][i][1] = "빈자리";
+				saves[k][i][2] = "공란";
+				saves[k][i][3] = "공란";
+				saves[k][i][4] = " ";
+			}
+		}
+	}
 }
