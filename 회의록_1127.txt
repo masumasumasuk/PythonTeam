@@ -1,0 +1,26 @@
+회의 내용 - 주제 설정, 팀명, 팀장, 역할분담
+
+주제 - 지정 주제
+팀명 - 파이썬
+팀장 - 김태현 
+
+역할 분담 
+
+서부건  -  프로그램 매뉴얼 제작
+김태현 -  팀장, 깃헙 환경 설정
+문수빈 -  PPT 합치기 및 통합
+김유탁 - NULL
+황준성 - Add Design 3 component
+        Design, implement, and utilize the concept of Collections
+             Design, implement, and utilize the concept of GUI Programming
+             Design, implement, and utilize the concept of Event Handling
+
+회의 내용
+
+각자 개인 프로젝트 코드 및 보고서 공유 이후 소스 파일 1개 지정 및 확장 ( 팀 프로젝트 소스 코드 초기 기반 확보)
+※ 화요일까지 업로드, 금요일 수업 전까지 확정
+
+기반 소스코드 확정 이후, 황준성 추가 설계요소 포함하여 코드 작성
+토요일 오후 8시까지 작업내용 깃헙 업로드(완성 여부 무관하게 업로드)
+
+※ 황준성님께서 지난 시간에 수업 수강 유기하고 외부 포럼 및 경진대회가서 I/O 부분은 다른 분이 하기로 결정
