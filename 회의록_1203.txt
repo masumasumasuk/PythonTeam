@@ -1,0 +1,42 @@
+회의록_1203
+
+회의 주제 - 활동 현황 확인 및 차후 활동 계획
+
+활동 현황 
+
+태현 - 기반 코드 확보 ( 조원 2명의 코드 병합 및 최적화) 
+준성 - GUI, EventHandling, Collection (달력, 시간 및 작품 선택, 좌석 선택)
+부건 - NULL
+수빈 - NULL
+유탁 - NULL
+
+프로젝트 요구사항 (자세한건 공지 PDF 참고)
+
+Same as Individual Project (PDF 참고) - 태현님 기반코드 확보(반영)
+
+• Added for Team Project
+
+• Design, implement, and utilize the concept of Collections         // 반영
+• Design, implement, and utilize the concept of GUI Programming     // 반영
+• Design, implement, and utilize the concept of Event Handling      // 반영
+• Design, implement, and utilize the concept of I/O                 // 반영 예정
+
+12/13 (수) 오후 11시 59분까지 프로젝트 제출 마감
+
+• Team
+• Export Java project as a .zip file
+• Presentation file as a .pdf file
+• Program manual as a .pdf file
+   • MUST include how to operate program
+   • MUST include test scenarios and results
+
+• Individual
+    • Peer-review report
+
+프로젝트 남은 활동
+
+1. I/O Programming 반영      	         // 태현님 인수인계 필요, 부건님 진행
+2. 클래스 병합                		 // 태현님 인수인계 필요, 수빈님 진행
+3. 추가 기능 구현       		         // 병합 완료 이후에 논의 (인력 및 시간 자원 체크 후 진행 혹은 생략)
+4. 발표자료 초본 제작		         // PPT 본인이 한 부분 제작 
+5. 매뉴얼 제작 및 발표자료 병합            // 유탁님 진행
