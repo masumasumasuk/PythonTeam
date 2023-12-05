@@ -3,6 +3,8 @@ package System;
 import java.time.LocalDateTime;
 import java.util.*;
 
+import javax.swing.SwingUtilities;
+
 class Concert_System extends Cheak_reservation {
 
 	public static void main(String[] args) {
@@ -61,7 +63,10 @@ class Concert_System extends Cheak_reservation {
 							try {
 								if (n == 1) {
 									invalidInput(g);
-									single_reservation(date, g);
+									SwingUtilities.invokeLater(() -> {
+							            SeatReservationGUI frame = new SeatReservationGUI();
+							            frame.setVisible(true);
+							        });
 								} else if (n == 2) {
 									invalidInput(g);
 									double_reservation(date, g);
@@ -251,51 +256,6 @@ class Concert_System extends Cheak_reservation {
 		}
 	}
 
-	private static void single_reservation(int k, String input) {
-		Scanner scanner = new Scanner(System.in);
-		Reservation_system s = new Reservation_system();
-		Save saves = new Save();
-
-		System.out.println("예매자의 성명을 입력하세요");
-		String name = scanner.next();
-
-		System.out.println("예매자의 전화번호를 입력하세요");
-		String phoneNum = scanner.next();
-
-		System.out.println(input + "석에 예매하실 좌석 번호를 입력하세요 (1~30) : ");
-		int sn = scanner.nextInt();
-		invalidInput(sn);
-		
-		System.out.println("예매 조회/취소/변경시 필요한 비밀번호 4자리를 입력해 주세요 : ");
-		String pw = scanner.next();
-
-		String i = String.valueOf(sn);
-
-		switch (input) {
-		case "S":
-			sn += 30;
-		case "A":
-			sn += 60;
-		case "B":
-			sn += 90;
-		default:
-			sn = sn;
-		}
-
-		s.set_TopNum(input, i);
-
-		s.set_BottomNum();
-
-		sn -= 1;
-		i = d_grade(sn);
-
-		String[] info = { i, name, s.get_Num(), phoneNum, pw };
-
-		saves.add_save(k, sn, info);
-
-		System.out.println("예매가 완료 되었습니다.");
-		System.out.println(name + "님의 예매번호는 : " + s.get_Num() + "입니다.");
-	}
 
 	private static void double_reservation(int k, String input) {
 		Scanner scanner = new Scanner(System.in);
