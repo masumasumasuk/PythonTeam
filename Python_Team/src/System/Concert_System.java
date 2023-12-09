@@ -11,6 +11,7 @@ class Concert_System extends Cheak_reservation {
 		Scanner scanner = new Scanner(System.in);
 		Save saves = new Save(39, 120, 5);
 		saves.initialize();
+		saves.set_save_from_file();
 
 		System.out.println("*** 예매 안내 ***");
 		System.out.println("1. 본 화면은 League Of Legends Champions Korea 예매화면 입니다.");
@@ -83,6 +84,7 @@ class Concert_System extends Cheak_reservation {
 						System.out.println("월요일은 예약이 불가능 합니다. 다시 시도해 주세요");
 					}
 				}
+				saves.Make_catalog();
 
 			} else if (input.equals("조회")) {
 				System.out.println("예매 조회 기능입니다.");
@@ -157,6 +159,7 @@ class Concert_System extends Cheak_reservation {
 					initialize(cheak.k, get_i(r_num), d_grade(get_i(r_num)));
 				}
 				System.out.println("취소 되었습니다.");
+				saves.Make_catalog();
 			} else if (input.equals("변경")) {
 				Cheak_reservation cheak = new Cheak_reservation();
 				
@@ -230,7 +233,10 @@ class Concert_System extends Cheak_reservation {
 					System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
 				}
 
+				saves.Make_catalog();
+				
 			} else if (input.equals("종료")) {
+				saves.Make_catalog();
 				break;
 			} else {
 				System.out.println(" 잘못 입력하셨습니다. 다시 시도해주세요");
@@ -323,3 +329,8 @@ class Concert_System extends Cheak_reservation {
 	}
 
 }
+
+
+
+
+
