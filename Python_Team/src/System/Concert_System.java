@@ -3,12 +3,15 @@ package System;
 import java.time.LocalDateTime;
 import java.util.*;
 
+import javax.swing.SwingUtilities;
+
 class Concert_System extends Cheak_reservation {
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		Save saves = new Save(39, 120, 5);
 		saves.initialize();
+		saves.set_save_from_file();
 
 		System.out.println("*** 예매 안내 ***");
 		System.out.println("1. 본 화면은 League Of Legends Champions Korea 예매화면 입니다.");
@@ -61,7 +64,10 @@ class Concert_System extends Cheak_reservation {
 							try {
 								if (n == 1) {
 									invalidInput(g);
-									single_reservation(date, g);
+									SwingUtilities.invokeLater(() -> {
+							            SeatReservationGUI frame = new SeatReservationGUI();
+							            frame.setVisible(true);
+							        });
 								} else if (n == 2) {
 									invalidInput(g);
 									double_reservation(date, g);
@@ -78,6 +84,7 @@ class Concert_System extends Cheak_reservation {
 						System.out.println("월요일은 예약이 불가능 합니다. 다시 시도해 주세요");
 					}
 				}
+				saves.Make_catalog();
 
 			} else if (input.equals("조회")) {
 				System.out.println("예매 조회 기능입니다.");
@@ -152,6 +159,7 @@ class Concert_System extends Cheak_reservation {
 					initialize(cheak.k, get_i(r_num), d_grade(get_i(r_num)));
 				}
 				System.out.println("취소 되었습니다.");
+				saves.Make_catalog();
 			} else if (input.equals("변경")) {
 				Cheak_reservation cheak = new Cheak_reservation();
 				
@@ -225,7 +233,10 @@ class Concert_System extends Cheak_reservation {
 					System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
 				}
 
+				saves.Make_catalog();
+				
 			} else if (input.equals("종료")) {
+				saves.Make_catalog();
 				break;
 			} else {
 				System.out.println(" 잘못 입력하셨습니다. 다시 시도해주세요");
@@ -251,51 +262,6 @@ class Concert_System extends Cheak_reservation {
 		}
 	}
 
-	private static void single_reservation(int k, String input) {
-		Scanner scanner = new Scanner(System.in);
-		Reservation_system s = new Reservation_system();
-		Save saves = new Save();
-
-		System.out.println("예매자의 성명을 입력하세요");
-		String name = scanner.next();
-
-		System.out.println("예매자의 전화번호를 입력하세요");
-		String phoneNum = scanner.next();
-
-		System.out.println(input + "석에 예매하실 좌석 번호를 입력하세요 (1~30) : ");
-		int sn = scanner.nextInt();
-		invalidInput(sn);
-		
-		System.out.println("예매 조회/취소/변경시 필요한 비밀번호 4자리를 입력해 주세요 : ");
-		String pw = scanner.next();
-
-		String i = String.valueOf(sn);
-
-		switch (input) {
-		case "S":
-			sn += 30;
-		case "A":
-			sn += 60;
-		case "B":
-			sn += 90;
-		default:
-			sn = sn;
-		}
-
-		s.set_TopNum(input, i);
-
-		s.set_BottomNum();
-
-		sn -= 1;
-		i = d_grade(sn);
-
-		String[] info = { i, name, s.get_Num(), phoneNum, pw };
-
-		saves.add_save(k, sn, info);
-
-		System.out.println("예매가 완료 되었습니다.");
-		System.out.println(name + "님의 예매번호는 : " + s.get_Num() + "입니다.");
-	}
 
 	private static void double_reservation(int k, String input) {
 		Scanner scanner = new Scanner(System.in);
@@ -363,3 +329,8 @@ class Concert_System extends Cheak_reservation {
 	}
 
 }
+
+
+
+
+
