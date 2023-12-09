@@ -1,0 +1,42 @@
+회의록_1209
+
+회의안건 - 대략적인 발표자료 구상과 피드백, 코드 연동의 어려움을 해결하는것, 추가로 구현이 가능할만한 아이디어
+
+프로젝트 현황
+
+활동 현황 
+
+태현 - 기반 코드 확보 ( 개인 프로젝트 코드 병합 및 최적화) 
+준성 - GUI, EventHandling, Collection (달력, 시간 및 작품 선택, 좌석 선택)
+부건 - I/O  Programming
+수빈 - NULL
+유탁 - NULL
+
+프로젝트 요구사항 (자세한건 공지 PDF 참고)
+
+• Added for Team Project
+
+• Design, implement, and utilize the concept of Collections         // 반영
+• Design, implement, and utilize the concept of GUI Programming     // 반영
+• Design, implement, and utilize the concept of Event Handling      // 반영
+• Design, implement, and utilize the concept of I/O                 // 반영 
+
+12/13 (수) 오후 11시 59분까지 프로젝트 제출 마감
+
+• Team
+• Export Java project as a .zip file
+• Presentation file as a .pdf file
+• Program manual as a .pdf file
+   • MUST include how to operate program
+   • MUST include test scenarios and results
+
+• Individual
+    • Peer-review report
+
+프로젝트 남은 활동
+
+1. 클래스 병합                		  // 태현님 일요일 진행, 미완시 수빈님께 인수인계 후 수빈님 진행
+2. 프로젝트 요구사항 구현 및 기능 테스트       // 수빈님 진행
+3. 발표자료 초본 제작		  // PPT 본인이 한 부분 제작 - 준성, 부건님 일요일까지 유탁님께 전달
+                                                        // 태현님 클래스 병합 후 논의
+4. 매뉴얼 제작 및 발표자료 병합            // 유탁님 진행
