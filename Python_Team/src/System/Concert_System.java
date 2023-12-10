@@ -5,6 +5,7 @@ import java.util.*;
 
 import javax.swing.SwingUtilities;
 
+
 class Concert_System extends Cheak_reservation {
 
 	public static void main(String[] args) {
@@ -24,66 +25,10 @@ class Concert_System extends Cheak_reservation {
 			System.out.println("기능을 선택하세요(예매,조회,취소,변경,종료) : ");
 			String input = scanner.next();
 			if (input.equals("예매")) {
-
-				boolean f = true;
-				while (f) {
-					System.out.println("예매 하실 날짜를 선택해 주세요 (0~38) : ");
-					int date = scanner.nextInt(); // 달력에서 0(12월 1일) ~ 38(12월 31일 오후) 매핑해서 클릭으로 입력 받기
-					try {
-						invalidDate(date);
-						f = false;
-
-						int n = 0;
-						boolean[] c = new boolean[2];
-						boolean b = false;
-						boolean d = true;
-						while (d) {
-							try {
-								System.out.println("예매 매수를 입력해주세요 (1~2) : ");
-								n = scanner.nextInt();
-								c[0] = false;
-								c[1] = true;
-								b = c[n - 1];
-								d = false;
-							} catch (ArrayIndexOutOfBoundsException e) {
-								System.out.println("예매 매수는 최대 2장 입니다. 다시 시도해 주세요");
-							}
-						}
-
-						int sn = 0;
-						String i = null;
-						String name = null;
-						String phoneNum = null;
-						String g = null;
-						Boolean a = true;
-
-						while (a) {
-							System.out.println("예매 하실 좌석 등급을 선택해 주세요 (V, S, A, B) : ");
-							g = scanner.next();
-
-							try {
-								if (n == 1) {
-									invalidInput(g);
-									SwingUtilities.invokeLater(() -> {
-							            SeatReservationGUI frame = new SeatReservationGUI();
-							            frame.setVisible(true);
-							        });
-								} else if (n == 2) {
-									invalidInput(g);
-									double_reservation(date, g);
-								}
-
-								a = false;
-							} catch (IllegalArgumentException e) {
-								System.out.println("잘못된 입력입니다. 다시 시도해 주세요.");
-								System.out.println(" ");
-							}
-						}
-
-					} catch (IllegalArgumentException e) {
-						System.out.println("월요일은 예약이 불가능 합니다. 다시 시도해 주세요");
-					}
-				}
+					SwingUtilities.invokeLater(() -> {
+			            CalendarGUI frame = new CalendarGUI();
+			            frame.setVisible(true);
+			        });
 				saves.Make_catalog();
 
 			} else if (input.equals("조회")) {
@@ -93,8 +38,16 @@ class Concert_System extends Cheak_reservation {
 
 				int n = scanner.nextInt();
 				if (n == 1) {
-					System.out.println("조회 하실 날짜를 선택해 주세요 (0~38) : ");
-					int date = scanner.nextInt();
+					Cheak_reservation c = new Cheak_reservation();
+					SwingUtilities.invokeLater(() -> {
+						Reservation_InquiryGUI frame = new Reservation_InquiryGUI();
+			            frame.setVisible(true);
+			        });
+					
+					int day = CalendarGUI.getDay();
+					int dayInfo = TheaterReservationGUI.getDayInfo();
+					int date = c.getConvertDay(dayInfo, day);
+					
 					System.out.println("V, S, A, B 중 조회 할 좌석 등급을 입력해주세요 : ");
 					String g = scanner.next();
 					if (g.equals("V")) {
@@ -185,7 +138,7 @@ class Concert_System extends Cheak_reservation {
 								+ saves.get_save(cheak.k, i)[2]);
 					}
 				} else if (d_grade(get_i(r_num)).equals("A")) {
-					System.out.println("************ S석 좌석 현황입니다. ************");
+					System.out.println("************ A석 좌석 현황입니다. ************");
 					for (int i = 60; i < 90; i++) {
 						System.out.println((i - 59) + "번 좌석의 예매자 이름 : " + saves.get_save(cheak.k, i)[1] + ", 예약 번호는 : "
 								+ saves.get_save(cheak.k, i)[2]);
@@ -199,7 +152,11 @@ class Concert_System extends Cheak_reservation {
 				}
 				System.out.println("변경할 좌석 번호를 말씀해주세요 :");
 				try {
+					Cheak_reservation c = new Cheak_reservation();
 					int n = scanner.nextInt();
+					if(c.reservation_Cheak(c.get_k(r_num), d_grade(get_i(r_num)), n)) {
+						
+					
 					invalidInput(n);
 
 					String i = String.valueOf(n);
@@ -229,6 +186,9 @@ class Concert_System extends Cheak_reservation {
 
 					System.out.println("변경되었습니다.");
 					System.out.println("변경된 예매 번호는 : " + s.get_Num() + " 입니다.");
+					}else {
+						System.out.println("이미 예약된 좌석입니다.");
+					}
 				} catch (IllegalArgumentException e) {
 					System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
 				}
@@ -255,78 +215,7 @@ class Concert_System extends Cheak_reservation {
 			throw new IllegalArgumentException();
 		}
 	}
-
-	private static void invalidDate(int in) {
-		if (in > 38) {
-			throw new IllegalArgumentException();
-		}
-	}
-
-
-	private static void double_reservation(int k, String input) {
-		Scanner scanner = new Scanner(System.in);
-		Reservation_system s = new Reservation_system();
-
-		Save saves = new Save();
-
-		System.out.println("대표자의 성명을 입력하세요");
-		String name = scanner.next();
-
-		System.out.println("대표자의 전화번호를 입력하세요");
-		String phoneNum = scanner.next();
-
-		System.out.println(input + "석에 예매하실 첫번째 좌석 번호를 입력하세요 (1~30) : ");
-		int sn = scanner.nextInt();
-		invalidInput(sn);
-		System.out.println(input + "석에 예매하실 두번째 좌석 번호를 입력하세요 (1~30) : ");
-		int sn2 = scanner.nextInt();
-		invalidInput(sn2);
-		
-		System.out.println("예매 조회/취소/변경시 필요한 비밀번호 4자리를 입력해 주세요 : ");
-		String pw = scanner.next();
-
-		String i = String.valueOf(sn);
-		String j = String.valueOf(sn2);
-
-		switch (input) {
-		case "S":
-			sn += 30;
-			sn2 += 30;
-			break;
-		case "A":
-			sn += 60;
-			sn2 += 60;
-			break;
-		case "B":
-			sn += 90;
-			sn2 += 90;
-			break;
-		default:
-			break;
-		}
-
-		s.set_TopNum(input, i);
-		s.set_BottomNum();
-		String num_1 = s.get_Num();
-
-		s.set_TopNum(input, j);
-		s.set_BottomNum();
-		String num_2 = s.get_Num();
-
-		sn -= 1;
-		sn2 -= 1;
-		i = d_grade(sn);
-		j = d_grade(sn2);
-
-		String[] info = { i, name, num_1, phoneNum, pw };
-		String[] info2 = { j, name, num_2, phoneNum, pw };
-
-		saves.add_save(k, sn, info);
-		saves.add_save(k, sn2, info2);
-
-		System.out.println("예매가 완료 되었습니다.");
-		System.out.println(name + "님의 예매번호는 : " + num_1 + " / " + num_2 + "입니다.");
-	}
+	
 
 }
 
