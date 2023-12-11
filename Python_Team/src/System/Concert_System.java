@@ -5,13 +5,11 @@ import java.util.*;
 
 import javax.swing.SwingUtilities;
 
-
 class Concert_System extends Cheak_reservation {
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		Save saves = new Save(39, 120, 5);
-		saves.initialize();
 		saves.set_save_from_file();
 
 		System.out.println("*** 예매 안내 ***");
@@ -47,34 +45,8 @@ class Concert_System extends Cheak_reservation {
 					int day = CalendarGUI.getDay();
 					int dayInfo = TheaterReservationGUI.getDayInfo();
 					int date = c.getConvertDay(dayInfo, day);
+					String g = TheaterReservationGUI_1.getGradeInfo();
 					
-					System.out.println("V, S, A, B 중 조회 할 좌석 등급을 입력해주세요 : ");
-					String g = scanner.next();
-					if (g.equals("V")) {
-						System.out.println("************ V석 좌석 현황입니다. ************");
-						for (int i = 0; i < 30; i++) {
-							System.out.println((i + 1) + "번 좌석의 예매자 이름 : " + saves.get_save(date, i)[1] + ", 예약 번호는 : "
-									+ saves.get_save(date, i)[2]);
-						}
-					} else if (g.equals("S")) {
-						System.out.println("************ S석 좌석 현황입니다. ************");
-						for (int i = 30; i < 60; i++) {
-							System.out.println((i - 29) + "번 좌석의 예매자 이름 : " + saves.get_save(date, i)[1] + ", 예약 번호는 : "
-									+ saves.get_save(date, i)[2]);
-						}
-					} else if (g.equals("A")) {
-						System.out.println("************ A석 좌석 현황입니다. ************");
-						for (int i = 60; i < 90; i++) {
-							System.out.println((i - 59) + "번 좌석의 예매자 이름 : " + saves.get_save(date, i)[1] + ", 예약 번호는 : "
-									+ saves.get_save(date, i)[2]);
-						}
-					} else if (g.equals("B")) {
-						System.out.println("************ B석 좌석 현황입니다. ************");
-						for (int i = 90; i < 120; i++) {
-							System.out.println((i - 89) + "번 좌석의 예매자 이름 : " + saves.get_save(date, i)[1] + ", 예약 번호는 : "
-									+ saves.get_save(date, i)[2]);
-						}
-					}
 				} else if (n == 2) {
 					Cheak_reservation cheak = new Cheak_reservation();
 					System.out.println("이름, 전화번호로 조회 or 예매번호로 조회 (1 or 2) : ");

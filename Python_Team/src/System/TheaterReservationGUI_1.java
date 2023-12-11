@@ -13,9 +13,14 @@ public class TheaterReservationGUI_1 extends JFrame {
     private JPanel showPanel;
     private ShowCollection<Show> showCollection;
     private static int dayInfo;
+    private static String gradeInfo;
     
     public static int getDayInfo() {
     	return dayInfo;
+    }
+    
+    public static String getGradeInfo() {
+    	return gradeInfo;
     }
 
     public TheaterReservationGUI_1(Calendar selectedDate) {
@@ -49,7 +54,7 @@ public class TheaterReservationGUI_1 extends JFrame {
         int dayOfWeek = selectedDate.get(Calendar.DAY_OF_WEEK);
 
         // On weekends, show both performances
-        if (dayOfWeek == Calendar.SATURDAY || dayOfWeek == Calendar.SUNDAY) {
+        if (dayOfWeek == Calendar.SATURDAY || dayOfWeek == Calendar.SUNDAY || Reservation_InquiryGUI.getDay() == 25) {
         	
             showCollection.addShow(new Show("Phantom of the Opera", "1-3 PM"));
             showCollection.addShow(new Show("Phantom of the Opera", "4-6 PM"));
@@ -80,6 +85,8 @@ public class TheaterReservationGUI_1 extends JFrame {
 			    
 
 			    if (result == JOptionPane.OK_OPTION) {
+			    	
+			    	inputGrade();
 			    	dispose();
 			    }
 			});
@@ -101,5 +108,67 @@ public class TheaterReservationGUI_1 extends JFrame {
 
         showPanel.revalidate();
         showPanel.repaint();
+        dispose();
     }
+    
+    private void inputGrade() {
+    	boolean a = true;
+    	while(a) {
+
+			try {
+				gradeInfo = JOptionPane.showInputDialog("V, S, A, B 중 조회 할 좌석 등급을 입력해주세요 : ");
+				invalidInput(gradeInfo);
+				
+				Cheak_reservation c = new Cheak_reservation();
+				
+		    	int day = Reservation_InquiryGUI.getDay();
+				int dayInfo = TheaterReservationGUI.getDayInfo();
+				int date = c.getConvertDay(dayInfo, day);
+				
+				reservationInquiry(gradeInfo, date);
+				
+				a = false;
+				dispose();
+				
+			} catch (IllegalArgumentException e) {
+				JOptionPane.showMessageDialog(null, "잘못 입력하였습니다");
+			}
+		}
+	}
+    
+    private void reservationInquiry(String g, int date) {
+    	Save saves = new Save();
+		int day = Reservation_InquiryGUI.getDay();
+    	if (g.equals("V")) {
+			System.out.println("************ "+ day +"일 V석 좌석 현황입니다. ************");
+			for (int i = 0; i < 30; i++) {
+				System.out.println((i + 1) + "번 좌석의 예매자 이름 : " + saves.get_save(date, i)[1] + ", 예약 번호는 : "
+						+ saves.get_save(date, i)[2]);
+			}
+		} else if (g.equals("S")) {
+			System.out.println("************ "+ day +"일 S석 좌석 현황입니다. ************");
+			for (int i = 30; i < 60; i++) {
+				System.out.println((i - 29) + "번 좌석의 예매자 이름 : " + saves.get_save(date, i)[1] + ", 예약 번호는 : "
+						+ saves.get_save(date, i)[2]);
+			}
+		} else if (g.equals("A")) {
+			System.out.println("************ "+ day +"일 A석 좌석 현황입니다. ************");
+			for (int i = 60; i < 90; i++) {
+				System.out.println((i - 59) + "번 좌석의 예매자 이름 : " + saves.get_save(date, i)[1] + ", 예약 번호는 : "
+						+ saves.get_save(date, i)[2]);
+			}
+		} else if (g.equals("B")) {
+			System.out.println("************ "+ day +"일 B석 좌석 현황입니다. ************");
+			for (int i = 90; i < 120; i++) {
+				System.out.println((i - 89) + "번 좌석의 예매자 이름 : " + saves.get_save(date, i)[1] + ", 예약 번호는 : "
+						+ saves.get_save(date, i)[2]);
+			}
+		}
+    }
+
+	private static void invalidInput(String in) {
+		if (!(in.equals("V") || in.equals("S") || in.equals("A") || in.equals("B"))) {
+			throw new IllegalArgumentException();
+		}
+	}
 }

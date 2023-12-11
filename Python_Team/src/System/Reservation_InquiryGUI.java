@@ -83,7 +83,7 @@ public class Reservation_InquiryGUI extends JFrame {
             selectedDate.set(year, month, day);
             int dayOfWeek = selectedDate.get(Calendar.DAY_OF_WEEK);
 
-            if (dayOfWeek == Calendar.MONDAY) {
+            if ((dayOfWeek == Calendar.MONDAY)&&!(day == 25)) {
                 JOptionPane.showMessageDialog(null, "Closed on Monday.");
             } else {
             	getDay = day;

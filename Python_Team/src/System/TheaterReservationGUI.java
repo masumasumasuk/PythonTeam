@@ -94,7 +94,7 @@ public class TheaterReservationGUI extends JFrame {
         int dayOfWeek = selectedDate.get(Calendar.DAY_OF_WEEK);
 
         // On weekends, show both performances
-        if (dayOfWeek == Calendar.SATURDAY || dayOfWeek == Calendar.SUNDAY) {
+        if (dayOfWeek == Calendar.SATURDAY || dayOfWeek == Calendar.SUNDAY || CalendarGUI.getDay() == 25) {
         	
             showCollection.addShow(new Show("Phantom of the Opera", "1-3 PM"));
             showCollection.addShow(new Show("Phantom of the Opera", "4-6 PM"));
