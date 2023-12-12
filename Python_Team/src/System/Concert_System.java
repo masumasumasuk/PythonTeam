@@ -13,7 +13,7 @@ class Concert_System extends Cheak_reservation {
 		saves.set_save_from_file();
 
 		System.out.println("*** 예매 안내 ***");
-		System.out.println("1. 본 화면은 League Of Legends Champions Korea 예매화면 입니다.");
+		System.out.println("1. 본 화면은 Concert Concerto 예매화면 입니다.");
 		System.out.println("2. 매주 월요일은 경기가 없으며 주말 및 공휴일은 일 2회 경기가 있습니다.");
 		System.out.println("3. 좌석 등급은 V, S, A, B 총 4종류 입니다.");
 		System.out.println("4. 1인당 최대 2매 예매 가능합니다.");
